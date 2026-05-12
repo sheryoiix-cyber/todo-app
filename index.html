@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHERY Todo List - Matrix Edition</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#050811">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="SHERY Todo List - Matrix Hacker Edition with Local Storage">
+    <meta name="keywords" content="todo, list, app, matrix, hacker">
+    <meta name="author" content="SHERY">
 </head>
 <body>
     <div class="matrix-bg">
@@ -12,6 +19,7 @@
     </div>
 
     <div class="container">
+        <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <h1 class="title">
@@ -26,6 +34,7 @@
             </div>
         </header>
 
+        <!-- Stats Dashboard -->
         <div class="stats-dashboard">
             <div class="stat-item">
                 <span class="stat-label">Total</span>
@@ -45,13 +54,21 @@
             </div>
         </div>
 
+        <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
 
+        <!-- Input Section -->
         <div class="input-section">
             <div class="input-group">
-                <input type="text" id="task-input" class="task-input" placeholder="Enter your task here..." autofocus>
+                <input 
+                    type="text" 
+                    id="task-input" 
+                    class="task-input" 
+                    placeholder="Enter your task here..."
+                    autofocus
+                >
                 <select id="priority-select" class="priority-select">
                     <option value="low">Low</option>
                     <option value="medium" selected>Medium</option>
@@ -68,8 +85,14 @@
             </div>
         </div>
 
+        <!-- Search & Filter Section -->
         <div class="filter-section">
-            <input type="text" id="search-input" class="search-input" placeholder="🔍 Search tasks...">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="🔍 Search tasks..."
+            >
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="active">Active</button>
@@ -78,6 +101,7 @@
             </div>
         </div>
 
+        <!-- Tasks List -->
         <div class="tasks-container">
             <ul class="tasks-list" id="tasks-list"></ul>
             <div class="empty-state" id="empty-state">
@@ -86,6 +110,7 @@
             </div>
         </div>
 
+        <!-- Action Buttons -->
         <div class="action-buttons">
             <button id="export-btn" class="btn btn-secondary">📥 Export</button>
             <button id="import-btn" class="btn btn-secondary">📤 Import</button>
@@ -93,13 +118,20 @@
             <button id="clear-all-btn" class="btn btn-danger">⚠️ Clear All</button>
         </div>
 
+        <!-- Hidden import input -->
         <input type="file" id="import-file" accept=".json" style="display: none;">
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <p>🔒 All data stored locally • No cloud sync • 100% Private</p>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW error:', err));
+        }
+    </script>
 </body>
 </html>
